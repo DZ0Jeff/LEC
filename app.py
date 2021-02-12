@@ -1,5 +1,7 @@
 from linkedin_api import Linkedin
 import json
+import random
+from time import sleep
 
 api = Linkedin('addtestfield@gmail.com','meuteste@01')
 
@@ -31,13 +33,35 @@ def extract_names():
     return names
 
 
+def extract_emails(target_name):
+    extracted_emails = 0
+
+    for list, name in enumerate(target_name):
+        # GET a profiles contact info
+        try:
+            contact_info = api.get_profile_contact_info(name)
+        
+            if contact_info['email_address']:
+                extracted_emails += 1
+                print(f'Extraindo {extracted_emails} e-mail de contato')
+                write_email(name, contact_info)      
+
+        except Exception as error:
+            print('Falha ao extrair! erro de conexão')
+            pass
+
+    print(f"{extracted_emails} e-mails extraidos, verifique 'email.json' para acesso ")  
+
+
 def write_email(target_name, contact_info):
     with open('email.json','a') as file:
         json.dump(
-        {
-            'name': target_name,
-            "e-mail" : contact_info['email_address']
-        }, 
+        [
+            {
+                'name': target_name,
+                "e-mail" : contact_info['email_address']
+            },
+        ], 
         file)
 
 
@@ -47,17 +71,12 @@ def main():
 
     target_name = extract_names()
 
-    for list, name in enumerate(target_name):
-        
-        print(f'Getting {list + 1} e-mail contact')
-        # GET a profiles contact info
-        contact_info = api.get_profile_contact_info(name)
+    extract_emails(target_name)    
 
-        if contact_info != '':
-            write_email(name, contact_info)      
+    with open('email.json') as email:
+        data = json.load(email)
 
-    print(f"Feito! {len(target_name)} clintes extraidos, verifique 'email.json' para acesso ")  
-
+    print(f"{len(data)} e-mails extraidos")
 
 if __name__ == "__main__":
     main()
