@@ -10,5 +10,5 @@ def getLinkedin():
     login = os.environ.get('LINKEDIN_USER')
     password = os.environ.get('LINKEDIN_PASSWORD')
 
-    api = Linkedin(login, password, refresh_cookies=True)
+    api = Linkedin(login, password)
     return api
