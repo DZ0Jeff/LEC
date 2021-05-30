@@ -1,5 +1,6 @@
 from factory import getLinkedin
-from utils import JSONtoExcel, save_to_json, extract_link, extract_json_data
+from utils import JSONtoExcel, save_to_json, extract_link
+from extractor import extract_json_data
 import json
 
 links = [
@@ -17,8 +18,10 @@ def main():
         print('[LPC]> Extraindo perfíl')
         user = extract_link(link)
         profile = api.get_profile(user)
-        
         data = extract_json_data(profile)
+        
+        contact = api.get_profile_contact_info(user)
+        data.update(contact)
 
         print('[LPC]> Escrevendo no arquivo...')
         json_array.append(data)
