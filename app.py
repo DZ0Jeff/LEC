@@ -1,7 +1,7 @@
 from factory import getLinkedin
 from utils import JSONtoExcel, save_to_json, extract_link
 from extractor import extract_json_data
-import json
+from flatten_json import flatten
 
 links = [
     "https://www.linkedin.com/in/fabio-seiki-ishitani-240a3625/",
@@ -21,7 +21,8 @@ def main():
         data = extract_json_data(profile)
         
         contact = api.get_profile_contact_info(user)
-        data.update(contact)
+        flatten_contact = flatten(contact)
+        data.update(flatten_contact)
 
         print('[LPC]> Escrevendo no arquivo...')
         json_array.append(data)
