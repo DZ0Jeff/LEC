@@ -1,14 +1,18 @@
 from factory import getLinkedin
-from utils import JSONtoExcel, remove_empty_elements, save_to_json, extract_link, remove_empty_elements
+from utils import JSONtoExcel, remove_empty_elements, save_to_json, extract_link, remove_empty_elements, read_excel_file
 from extractor import extract_json_data
 from flatten_json import flatten
+from random import randint
+from time import sleep
 
-links = [
-    "https://www.linkedin.com/in/fabio-seiki-ishitani-240a3625/",
-    "https://www.linkedin.com/in/rafaela-rompatto-corr%C3%AAa/"
-]
+
+# links = [
+#     "https://www.linkedin.com/in/fabio-seiki-ishitani-240a3625/",
+#     "https://www.linkedin.com/in/rafaela-rompatto-corr%C3%AAa/"
+# ]
 
 json_array = []
+links = read_excel_file('crawler_linkedin_input.xlsx')
 
 def main():
     print('[LPC]> Iniciando crawler..')
@@ -29,6 +33,7 @@ def main():
         json_array.append(data)
         save_to_json(json_array, 'data')
         print('[LPC]> Terminado!')
+        sleep(randint(10,100))
 
     JSONtoExcel('data')
     #  JSONJ

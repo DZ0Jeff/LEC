@@ -87,7 +87,7 @@ def JSONtoExcel(filename):
         print('Iniciando convensão...')
         # df = pd.read_json(f'{filename}.json')
         df = load_json(filename)
-        df = pd.json_normalize(df[0])
+        df = pd.json_normalize(df)
         df.to_excel(f'{filename}.xlsx')
         print('Convensão realizada com sucesso!')
 
@@ -130,3 +130,8 @@ def remove_empty_elements(d):
         return [v for v in (remove_empty_elements(v) for v in d) if not empty(v)]
     else:
         return {k: v for k, v in ((k, remove_empty_elements(v)) for k, v in d.items()) if not empty(v)}
+
+
+def read_excel_file(file):
+    links = pd.read_excel(file)
+    return links['Link'].tolist()
