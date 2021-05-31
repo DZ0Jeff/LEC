@@ -6,22 +6,26 @@ from random import randint
 from time import sleep
 
 
-# links = [
-#     "https://www.linkedin.com/in/fabio-seiki-ishitani-240a3625/",
-#     "https://www.linkedin.com/in/rafaela-rompatto-corr%C3%AAa/"
-# ]
-
 json_array = []
-links = read_excel_file('crawler_linkedin_input.xlsx')
+
 
 def main():
     print('[LPC]> Iniciando crawler..')
     api = getLinkedin()
+    links = read_excel_file('crawler_linkedin_input.xlsx')
     
-    for link in links:
+    for link in links[:62]:
         print('[LPC]> Extraindo perfíl')
         user = extract_link(link)
-        profile = api.get_profile(user)
+        print(user)
+        
+        try:
+            profile = api.get_profile(user)
+        
+        except KeyError:
+            print('Usúario inválido')
+            continue
+
         data = extract_json_data(profile)
         
         contact = api.get_profile_contact_info(user)
@@ -33,7 +37,7 @@ def main():
         json_array.append(data)
         save_to_json(json_array, 'data')
         print('[LPC]> Terminado!')
-        sleep(randint(10,100))
+        sleep(randint(10,3600))
 
     JSONtoExcel('data')
     #  JSONJ
