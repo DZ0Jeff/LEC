@@ -4,13 +4,14 @@ from utils import check_param
 # Extract JSON
 def extract_json_data(profile):
     data = dict()
+    
+    data['Name'] = profile['firstName'] + ' ' + profile['lastName']
     try:
         data['Sumário'] = profile["summary"]
     
     except KeyError:
         data['Sumário'] = "Não existente!"
 
-    data['Name'] = profile['firstName'] + ' ' + profile['lastName']
     try:
         data['Ocupação'] = profile["headline"]
     

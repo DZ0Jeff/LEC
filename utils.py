@@ -4,7 +4,7 @@ from time import sleep
 import pandas as pd
 
 
-def get_contacts(type_job="CEO"):
+def get_contacts(api, type_job="CEO"):
     try:
         profiles = api.search_people(keyword_title=type_job)
         write_in_profile(profiles)
@@ -31,7 +31,7 @@ def extract_names():
     return names
 
 
-def extract_emails(target_name):
+def extract_emails(api, target_name):
     extracted_emails = 0
 
     for list, name in enumerate(target_name):
@@ -85,11 +85,14 @@ def extract_link(link):
 def JSONtoExcel(filename):
     try:
         print('Iniciando convensão...')
-        df = pd.read_json(f'{filename}.json')
+        # df = pd.read_json(f'{filename}.json')
+        df = load_json(filename)
+        df = pd.json_normalize(df[0])
         df.to_excel(f'{filename}.xlsx')
         print('Convensão realizada com sucesso!')
 
-    except Exception:
+    except Exception as error:
+        print(f'[ERRO] {error}')
         print('Falha na conversão, Arquivo incorreto ou não existe...')
 
 
@@ -107,7 +110,23 @@ def check_param(param):
 
 
 def load_json(json_name):
+    """
+    Load json from file
+    """
     with open(f'{json_name}.json','r', encoding="utf-8") as file:
         data = json.load(file)
 
     return data
+
+def remove_empty_elements(d):
+    """recursively remove empty lists, empty dicts, or None elements from a dictionary"""
+
+    def empty(x):
+        return x is None or x == {} or x == []
+
+    if not isinstance(d, (dict, list)):
+        return d
+    elif isinstance(d, list):
+        return [v for v in (remove_empty_elements(v) for v in d) if not empty(v)]
+    else:
+        return {k: v for k, v in ((k, remove_empty_elements(v)) for k, v in d.items()) if not empty(v)}

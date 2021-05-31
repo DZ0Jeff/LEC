@@ -1,5 +1,5 @@
 from factory import getLinkedin
-from utils import JSONtoExcel, save_to_json, extract_link
+from utils import JSONtoExcel, remove_empty_elements, save_to_json, extract_link, remove_empty_elements
 from extractor import extract_json_data
 from flatten_json import flatten
 
@@ -23,6 +23,7 @@ def main():
         contact = api.get_profile_contact_info(user)
         flatten_contact = flatten(contact)
         data.update(flatten_contact)
+        data = remove_empty_elements(data)
 
         print('[LPC]> Escrevendo no arquivo...')
         json_array.append(data)
