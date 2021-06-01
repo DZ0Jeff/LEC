@@ -39,7 +39,7 @@ def main():
             json_array.append(data)
             save_to_json(json_array, 'data')
             print('[LPC]> Terminado!')
-            sleep(randint(10,1800))
+            sleep(randint(10, 600))
 
             if index != 0 and index % 50 == 0:
                 sleep(3600) 
