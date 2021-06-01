@@ -16,7 +16,7 @@ def main():
     
     for index, link in enumerate(links):
         print(f'{index} usuário')
-        if index >= 100:
+        if index >= 153:
             print('[LPC]> Extraindo perfíl')
             user = extract_link(link)
             print(user)
@@ -27,6 +27,11 @@ def main():
             except KeyError:
                 print('Usúario inválido')
                 continue
+
+            except Exception as error:
+                print(f'> [ERRO] {error}')
+                print('Usúario inválido')
+                exit()
 
             data = extract_json_data(profile)
             
@@ -42,7 +47,8 @@ def main():
             sleep(randint(10, 600))
 
             if index != 0 and index % 50 == 0:
-                sleep(3600) 
+                print('Limite atingido! Tentge novamente amanhã')
+                exit() 
 
     JSONtoExcel('data')
     #  JSONJ
