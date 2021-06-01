@@ -10,5 +10,10 @@ def getLinkedin():
     login = os.environ.get('LINKEDIN_USER')
     password = os.environ.get('LINKEDIN_PASSWORD')
 
-    api = Linkedin(login, password)
-    return api
+    try:
+        api = Linkedin(login, password)
+        return api
+    
+    except Exception as error:
+        print('> [LPC] Algo deu errado no login...')
+        print(f'> [LPC] [ERRO] {error}')

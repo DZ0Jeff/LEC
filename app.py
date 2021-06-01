@@ -14,30 +14,35 @@ def main():
     api = getLinkedin()
     links = read_excel_file('crawler_linkedin_input.xlsx')
     
-    for link in links[:62]:
-        print('[LPC]> Extraindo perfíl')
-        user = extract_link(link)
-        print(user)
-        
-        try:
-            profile = api.get_profile(user)
-        
-        except KeyError:
-            print('Usúario inválido')
-            continue
+    for index, link in enumerate(links):
+        print(f'{index} usuário')
+        if index >= 100:
+            print('[LPC]> Extraindo perfíl')
+            user = extract_link(link)
+            print(user)
+            
+            try:
+                profile = api.get_profile(user)
+            
+            except KeyError:
+                print('Usúario inválido')
+                continue
 
-        data = extract_json_data(profile)
-        
-        contact = api.get_profile_contact_info(user)
-        flatten_contact = flatten(contact)
-        data.update(flatten_contact)
-        data = remove_empty_elements(data)
+            data = extract_json_data(profile)
+            
+            contact = api.get_profile_contact_info(user)
+            flatten_contact = flatten(contact)
+            data.update(flatten_contact)
+            data = remove_empty_elements(data)
 
-        print('[LPC]> Escrevendo no arquivo...')
-        json_array.append(data)
-        save_to_json(json_array, 'data')
-        print('[LPC]> Terminado!')
-        sleep(randint(10,3600))
+            print('[LPC]> Escrevendo no arquivo...')
+            json_array.append(data)
+            save_to_json(json_array, 'data')
+            print('[LPC]> Terminado!')
+            sleep(randint(10,1800))
+
+            if index != 0 and index % 50 == 0:
+                sleep(3600) 
 
     JSONtoExcel('data')
     #  JSONJ
