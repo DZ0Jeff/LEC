@@ -2,6 +2,7 @@ import json
 import random
 from time import sleep
 import pandas as pd
+from random import randint
 
 
 def get_contacts(api, type_job="CEO"):
@@ -135,3 +136,10 @@ def remove_empty_elements(d):
 def read_excel_file(file):
     links = pd.read_excel(file)
     return links['Link'].tolist()
+
+def save_counter(counter):
+        with open("data/links.txt", "w") as file:
+            file.write(f"{counter}\n")
+
+def generate_random_time():
+    sleep(randint(10, 600))
