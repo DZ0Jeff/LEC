@@ -1,5 +1,5 @@
 from factory import getLinkedin
-from utils import JSONtoExcel, remove_empty_elements, save_to_json, extract_link, remove_empty_elements, read_excel_file, save_counter
+from utils import JSONtoExcel, remove_empty_elements, save_to_json, extract_link, remove_empty_elements, read_excel_file, save_counter, generate_random_time
 from extractor import extract_json_data
 from flatten_json import flatten
 
@@ -15,7 +15,7 @@ def main():
     for index, link in enumerate(links):
         print(f'{index} usuário')
         save_counter(index)
-        if index >= 200:
+        if index >= 201:
             print('[LPC]> Extraindo perfíl')
             user = extract_link(link)
             print(user)
@@ -43,7 +43,7 @@ def main():
             json_array.append(data)
             save_to_json(json_array, 'data')
             print('[LPC]> Terminado!')
-            
+            generate_random_time()
 
             if index != 0 and index % 50 == 0:
                 print('Limite atingido! Tentge novamente amanhã')
