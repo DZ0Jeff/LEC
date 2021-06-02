@@ -3,7 +3,6 @@ from utils import JSONtoExcel, remove_empty_elements, save_to_json, extract_link
 from extractor import extract_json_data
 from flatten_json import flatten
 
-
 json_array = []
 
 
