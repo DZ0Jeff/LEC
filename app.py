@@ -15,7 +15,7 @@ def main():
     for index, link in enumerate(links):
         print(f'{index} usuário')
         save_counter(index)
-        if index >= 251:
+        if index >= 301:
             print('[LPC]> Extraindo perfíl')
             user = extract_link(link)
             print(user)
