@@ -142,4 +142,6 @@ def save_counter(counter):
             file.write(f"{counter}\n")
 
 def generate_random_time():
-    sleep(randint(10, 600))
+    time = randint(10, 600)
+    print(f'[LPC] > Esperando {time} segundos')
+    sleep(time)
