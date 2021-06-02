@@ -138,7 +138,7 @@ def read_excel_file(file):
     return links['Link'].tolist()
 
 def save_counter(counter):
-        with open("data/links.txt", "w") as file:
+        with open("assets/links.txt", "w") as file:
             file.write(f"{counter}\n")
 
 def generate_random_time():
