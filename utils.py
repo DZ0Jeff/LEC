@@ -3,6 +3,7 @@ import random
 from time import sleep
 import pandas as pd
 from random import randint
+from itertools import cycle
 
 
 def get_contacts(api, type_job="CEO"):
@@ -119,6 +120,7 @@ def load_json(json_name):
 
     return data
 
+
 def remove_empty_elements(d):
     """recursively remove empty lists, empty dicts, or None elements from a dictionary"""
 
@@ -135,13 +137,23 @@ def remove_empty_elements(d):
 
 def read_excel_file(file):
     links = pd.read_excel(file)
-    return links['Link'].tolist()
+    return links['Link do Funcionario'].tolist()
+
 
 def save_counter(counter):
         with open("assets/links.txt", "w") as file:
             file.write(f"{counter}\n")
 
+
 def generate_random_time():
-    time = randint(10, 600)
+    time = randint(10, 30)
     print(f'[LPC] > Esperando {time} segundos')
     sleep(time)
+
+
+class RotateAccounts:
+    def __init__(self, accounts):
+        self.cycleAccount = cycle(accounts)
+
+    def nextAccount(self):
+        return next(self.cycleAccount)
