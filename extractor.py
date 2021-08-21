@@ -2,9 +2,10 @@ from utils import check_param
 
 
 # Extract JSON
-def extract_json_data(profile):
+def extract_json_data(profile, url):
     data = dict()
     
+    data['Link'] = url
     data['Name'] = profile['firstName'] + ' ' + profile['lastName']
     try:
         data['Sumário'] = profile["summary"]

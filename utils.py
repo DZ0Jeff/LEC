@@ -137,7 +137,7 @@ def remove_empty_elements(d):
 
 def read_excel_file(file):
     links = pd.read_excel(file)
-    return links['Link do Funcionario'].tolist()
+    return links['LINK DO FUNCIONÁRIO'].tolist()
 
 
 def save_counter(counter):
@@ -145,8 +145,8 @@ def save_counter(counter):
             file.write(f"{counter}\n")
 
 
-def generate_random_time():
-    time = randint(10, 30)
+def generate_random_time(init=30, end=60):
+    time = randint(init, end)
     print(f'[LPC] > Esperando {time} segundos')
     sleep(time)
 
