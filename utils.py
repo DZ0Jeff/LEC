@@ -137,7 +137,7 @@ def remove_empty_elements(d):
 
 def read_excel_file(file):
     links = pd.read_excel(file)
-    return links['LINK DO FUNCIONÁRIO'].tolist()
+    return links['Link Linkedin'].tolist()
 
 
 def save_counter(counter):

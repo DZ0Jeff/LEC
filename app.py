@@ -1,9 +1,9 @@
+from json.decoder import JSONDecodeError
 from factory import getLinkedin
 from utils import JSONtoExcel, RotateAccounts, remove_empty_elements, save_to_json, extract_link, remove_empty_elements, read_excel_file, save_counter, generate_random_time
 from extractor import extract_json_data
 from flatten_json import flatten
 from account import accounts
-
 
 json_array = []
 
@@ -15,11 +15,11 @@ def main():
 
     print(next_account)
 
-    links = read_excel_file('linkedin.xlsx')
+    links = read_excel_file('linkedin_v2.xlsx')
     api = getLinkedin(next_account["user"], next_account["password"])
     
     for index, link in enumerate(links):
-        if index >= 595:
+        if index >= 900:
             print(f'{index} usuário')
             save_counter(index)
             
@@ -49,7 +49,12 @@ def main():
                 continue
             
             generate_random_time()
-            contact = api.get_profile_contact_info(user)
+            try:
+                contact = api.get_profile_contact_info(user)
+            
+            except JSONDecodeError:
+                print('>[LPC]> informações inválidas!')
+
             flatten_contact = flatten(contact)
             data.update(flatten_contact)
             data = remove_empty_elements(data)

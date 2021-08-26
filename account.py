@@ -1,14 +1,18 @@
 accounts = [
     {
-        "user": "vovaj82856@bushdown.com",
-        "password" : "0YSyF!mi@XMq"
+        "user": "gikova1877@kembung.com",
+        "password": "@Ok&3zgkW1fA"
     },
     {
-        "user": "liway36758@ampswipe.com",
-        "password" : "ArG^zogoEH*"
+        'user': 'xokip60014@ansomesa.com',
+        'password': 'v%qjJBv4tRC8'
     },
     {
-        "user": "fiwatif718@bushdown.com",
-        "password" : "2QpH@7hodc"
+        'user': 'ravava2328@ampswipe.com',
+        'password': 'v%qjJBv4tRC8'
+    },
+    {
+        'user': 'jobeboc323@bushdown.com',
+        'password': '8cipM#Whcrq$'
     },
 ]
