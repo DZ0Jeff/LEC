@@ -1,9 +1,10 @@
 from json.decoder import JSONDecodeError
 from factory import getLinkedin
-from utils import JSONtoExcel, RotateAccounts, remove_empty_elements, save_to_json, extract_link, remove_empty_elements, read_excel_file, save_counter, generate_random_time
+from utils import JSONtoExcel, RotateAccounts, extract_profiles_from_company, remove_empty_elements, save_to_json, extract_link, remove_empty_elements, read_excel_file, save_counter, generate_random_time
 from extractor import extract_json_data
 from flatten_json import flatten
 from account import accounts
+import os
 
 json_array = []
 
@@ -15,12 +16,12 @@ def main():
 
     print(next_account)
 
-    links = read_excel_file('linkedin_v2.xlsx')
+    links = read_excel_file('data/Zé Delivery.xlsx')
     api = getLinkedin(next_account["user"], next_account["password"])
     
     for index, link in enumerate(links):
-        if index >= 900:
-            print(f'{index} usuário')
+        print(f'{index} usuário')
+        if index >= 206:
             save_counter(index)
             
             print('[LPC]> Extraindo perfíl')
@@ -69,9 +70,11 @@ def main():
                 print('Limite atingido! Trocando de conta...')
                 next_account = account.nextAccount()
                 api = getLinkedin(next_account["user"], next_account["password"])
-            
 
-    JSONtoExcel('data')
+    # extract_profiles_from_company('Zé Delivery')
+    # JSONtoExcel('Zé Delivery')
+    # profiles = read_excel_file('Zé Delivery.xlsx')
+    # print(len(profiles))
 
 if __name__ == "__main__":
     main()

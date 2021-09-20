@@ -1,9 +1,11 @@
+from factory import getLinkedin
 import json
 import random
 from time import sleep
 import pandas as pd
 from random import randint
 from itertools import cycle
+from account import accounts
 
 
 def get_contacts(api, type_job="CEO"):
@@ -68,7 +70,7 @@ def write_email(target_name, contact_info):
 def save_to_json(data, filename):
     print('Salvando os dados em JSON')
     with open(f'{filename}.json','w', encoding='utf8') as file:
-        json.dump(data, file, ensure_ascii=False)
+        json.dump(data, file, indent=4, ensure_ascii=False)
 
 
 def extract_link(link):
@@ -137,7 +139,7 @@ def remove_empty_elements(d):
 
 def read_excel_file(file):
     links = pd.read_excel(file)
-    return links['Link Linkedin'].tolist()
+    return links['public_id'].tolist()
 
 
 def save_counter(counter):
@@ -157,3 +159,16 @@ class RotateAccounts:
 
     def nextAccount(self):
         return next(self.cycleAccount)
+
+
+def extract_profiles_from_company(company):
+    account = RotateAccounts(accounts)
+    next_account = account.nextAccount()
+    api = getLinkedin(next_account["user"], next_account["password"])
+
+    print('Extraíndo...')
+    results = api.search_people(keyword_company=company)
+    # results = api.get_company(27020482)
+    print(results)
+    save_to_json(results, company)
+    

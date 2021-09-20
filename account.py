@@ -1,18 +1,18 @@
 accounts = [
     {
-        "user": "gikova1877@kembung.com",
-        "password": "@Ok&3zgkW1fA"
+        'user': 'kepaj28200@u461.com',
+        'password': '6nt%gChj$yiR'
     },
     {
-        'user': 'xokip60014@ansomesa.com',
-        'password': 'v%qjJBv4tRC8'
+        'user': 'petigi6905@u461.com',
+        'password': 'y*K8sVCysZ3*'
     },
     {
-        'user': 'ravava2328@ampswipe.com',
-        'password': 'v%qjJBv4tRC8'
+        'user': 'sativex248@tst999.com',
+        'password': '47S#k^fOY%@0'
     },
     {
-        'user': 'jobeboc323@bushdown.com',
-        'password': '8cipM#Whcrq$'
-    },
+        'user': 'mofova9402@vefblogg.com',
+        'password': '8!$Yr41&ZHel'
+    }
 ]
