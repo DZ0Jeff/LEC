@@ -21,7 +21,7 @@ def main():
     
     for index, link in enumerate(links):
         print(f'{index} usuário')
-        if index >= 206:
+        if index >= 350:
             save_counter(index)
             
             print('[LPC]> Extraindo perfíl')
@@ -77,4 +77,6 @@ def main():
     # print(len(profiles))
 
 if __name__ == "__main__":
-    main()
+    # main()
+    JSONtoExcel('Ze-delivery-final')
+    # JSONtoExcel('Compra agora profile')

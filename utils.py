@@ -6,6 +6,7 @@ import pandas as pd
 from random import randint
 from itertools import cycle
 from account import accounts
+from openpyxl.utils.exceptions import IllegalCharacterError
 
 
 def get_contacts(api, type_job="CEO"):
@@ -94,6 +95,9 @@ def JSONtoExcel(filename):
         df = pd.json_normalize(df)
         df.to_excel(f'{filename}.xlsx')
         print('Convensão realizada com sucesso!')
+
+    except IllegalCharacterError:
+        pass
 
     except Exception as error:
         print(f'[ERRO] {error}')

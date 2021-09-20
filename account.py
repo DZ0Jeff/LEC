@@ -1,5 +1,9 @@
 accounts = [
     {
+        'user': 'mofova9402@vefblogg.com',
+        'password': '8!$Yr41&ZHel'
+    },
+    {
         'user': 'kepaj28200@u461.com',
         'password': '6nt%gChj$yiR'
     },
@@ -10,9 +14,5 @@ accounts = [
     {
         'user': 'sativex248@tst999.com',
         'password': '47S#k^fOY%@0'
-    },
-    {
-        'user': 'mofova9402@vefblogg.com',
-        'password': '8!$Yr41&ZHel'
     }
 ]
