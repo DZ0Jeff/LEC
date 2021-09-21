@@ -77,6 +77,6 @@ def main():
     # print(len(profiles))
 
 if __name__ == "__main__":
-    # main()
-    JSONtoExcel('Ze-delivery-final')
+    main()
+    # JSONtoExcel('Ze-delivery-final')
     # JSONtoExcel('Compra agora profile')
