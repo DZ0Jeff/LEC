@@ -71,12 +71,6 @@ def main():
                 next_account = account.nextAccount()
                 api = getLinkedin(next_account["user"], next_account["password"])
 
-    # extract_profiles_from_company('Zé Delivery')
-    # JSONtoExcel('Zé Delivery')
-    # profiles = read_excel_file('Zé Delivery.xlsx')
-    # print(len(profiles))
 
 if __name__ == "__main__":
     main()
-    # JSONtoExcel('Ze-delivery-final')
-    # JSONtoExcel('Compra agora profile')
