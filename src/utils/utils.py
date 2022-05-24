@@ -5,7 +5,7 @@ from time import sleep
 import pandas as pd
 from random import randint
 from itertools import cycle
-from account import accounts
+from config.account import accounts
 from openpyxl.utils.exceptions import IllegalCharacterError
 
 

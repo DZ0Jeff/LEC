@@ -1,4 +1,4 @@
-from utils import check_param
+from src.utils.utils import check_param
 
 
 # Extract JSON
